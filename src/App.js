@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Search from './Search';
 import Result from './Result';
+import NominationList from './NominationList';
 import useDebounce from './hooks/useDebounce';
 import axios from 'axios';
 import './App.css';
@@ -8,6 +9,7 @@ import './App.css';
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
+  const [nominations, setNominations] = useState([]);
 
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
   const BASE_URL = 'http://www.omdbapi.com/';
@@ -20,6 +22,7 @@ function App() {
         .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie`)
         .then((res) => {
           setResult(res.data.Search);
+          console.log(result);
         })
         .catch((err) => {
           console.error(err);
@@ -32,8 +35,10 @@ function App() {
 
   return (
     <div className='App'>
-      <Search setSearchTerm={setSearchTerm} setResult={setResult} />
-      <Result result={result} searchTerm={searchTerm} />
+      <div>The Shoppies</div>
+      <Search setSearchTerm={setSearchTerm} />
+      <Result result={result} searchTerm={searchTerm} setNominations={setNominations} nominations={nominations} />
+      <NominationList nominations={nominations} />
     </div>
   );
 }

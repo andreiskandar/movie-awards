@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 
-const Search = ({ setSearchTerm, searchTerm, setResult }) => {
+const Search = ({ setSearchTerm }) => {
   const handleOnChange = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);

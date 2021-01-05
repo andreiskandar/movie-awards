@@ -1,15 +1,19 @@
 import React from 'react';
 
-const Result = ({ result, searchTerm }) => {
+const Result = ({ result, searchTerm, setNominations, nominations }) => {
   if (!result) return null;
+
+  function handleOnClick(movie) {
+    setNominations([...nominations, movie]);
+  }
 
   function renderResult() {
     return (
       <ul>
         {result.map((movie, index) => (
-          <li key={index}>
+          <li key={movie.imdbID}>
             {movie.Title} {movie.Year}
-            <button> Nominate </button>
+            <button onClick={() => handleOnClick(movie)}> Nominate </button>
           </li>
         ))}
       </ul>
