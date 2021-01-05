@@ -19,8 +19,9 @@ function App() {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
+      const searchURL = `${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie&page=1`;
       axios
-        .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie&page=1`)
+        .get(searchURL)
         .then((res) => {
           setResult(res.data.Search);
         })
@@ -40,6 +41,7 @@ function App() {
       <div className='result-nomination'>
         <Result
           result={result}
+          setResult={setResult}
           searchTerm={searchTerm}
           setNominations={setNominations}
           nominations={nominations}
@@ -51,6 +53,8 @@ function App() {
           setNominations={setNominations}
           setDisableButton={setDisableButton}
           disableButton={disableButton}
+          setResult={setResult}
+          result={result}
         />
       </div>
     </div>

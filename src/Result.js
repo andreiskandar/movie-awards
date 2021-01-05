@@ -1,25 +1,32 @@
 import React from 'react';
-import classNames from 'classnames';
 import './Result.css';
 
-const Result = ({ result, searchTerm, setNominations, nominations, setDisableButton, disableButton }) => {
+const Result = ({ result, setResult, searchTerm, setNominations, nominations, setDisableButton, disableButton }) => {
   if (!result || result.length === 0) return null;
 
-  function addNomination(movie) {
+  function addNomination(movie, key) {
     //using set to ensure each nomination is unique
     setNominations([...new Set([...nominations, movie])]);
-    setDisableButton(!disableButton);
+
+    // selected movie nomination button will be disabled
+    const setupDisableButton = result.map((entry, index) => {
+      if (key === index) {
+        return { ...entry, disabled: true };
+      } else return { ...entry };
+    });
+
+    setResult(setupDisableButton);
   }
 
   function renderResult() {
-    const listResult = result.map((movie) => {
+    const listResult = result.map((movie, key) => {
       return (
         <li key={movie.imdbID} className='movie__list'>
           {movie.Title}({movie.Year})
           <button
+            disabled={movie.disabled}
             className={`${movie.imdbID} result__button button`}
-            // disabled={disableButton}
-            onClick={() => addNomination(movie)}
+            onClick={() => addNomination(movie, key)}
           >
             Nominate
           </button>

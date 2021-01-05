@@ -12,6 +12,11 @@
   font-size: 13.28px;
 }
 
-.button { 
+.result__container .movie__list .button { 
   margin-left: 5px;
+}
+
+.result__container .movie__list .disableButton-true {
+  color: #1010104d;
+  background-color: #efefef;
 }

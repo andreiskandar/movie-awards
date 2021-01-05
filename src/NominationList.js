@@ -1,15 +1,24 @@
 import React from 'react';
 import './NominationList.css';
 
-const NominationList = ({ nominations, setNominations, setDisableButton, disableButton }) => {
+const NominationList = ({ result, nominations, setResult, setNominations }) => {
   if (nominations.length === 0) {
     return null;
   }
 
-  function removeNomination(index) {
+  function removeNomination(index, imdbID) {
     nominations.splice(index, 1);
     setNominations([...nominations]);
-    setDisableButton(!disableButton);
+
+    // selected movie nomination button will be disabled
+    const enableButton = result.map((entry) => {
+      if (entry.imdbID === imdbID) {
+        return { ...entry, disabled: false };
+      }
+      return { ...entry };
+    });
+
+    setResult(enableButton);
   }
 
   function renderNominations() {
@@ -17,7 +26,10 @@ const NominationList = ({ nominations, setNominations, setDisableButton, disable
       return (
         <li key={nomination.imdbID} className='nomination__list'>
           {nomination.Title}({nomination.Year})
-          <button className={`nominationList__remove-button button`} onClick={() => removeNomination(index)}>
+          <button
+            className={`nominationList__remove-button button`}
+            onClick={() => removeNomination(index, nomination.imdbID)}
+          >
             Remove
           </button>
         </li>

@@ -11,3 +11,7 @@
   padding: 5px 0;
   font-size: 13.28px;
 }
+
+.nominationList__container .nomination__list .button {
+  margin-left: 5px;
+}
