@@ -4,7 +4,7 @@ const Result = ({ result, searchTerm, setNominations, nominations }) => {
   if (!result) return null;
 
   function addNomination(movie) {
-    //validate no duplicate in the nomination list
+    //using set to ensure each nomination is unique
     setNominations([...new Set([...nominations, movie])]);
   }
 

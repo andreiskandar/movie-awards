@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
 
 const NominationList = ({ nominations, setNominations }) => {
   if (nominations.length === 0) {
