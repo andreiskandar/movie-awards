@@ -4,17 +4,21 @@ const Result = ({ result, searchTerm }) => {
   if (!result) return null;
 
   function renderResult() {
-    return result.map((movie) => (
-      <li>
-        {movie.Title} {movie.Year}
-        <button> Nominate </button>
-      </li>
-    ));
+    return (
+      <ul>
+        {result.map((movie, index) => (
+          <li key={index}>
+            {movie.Title} {movie.Year}
+            <button> Nominate </button>
+          </li>
+        ))}
+      </ul>
+    );
   }
   return (
     <div>
-      <div>Results for "{searchTerm}"</div>
-      <ul>{renderResult()}</ul>
+      {result.length > 0 && <div>Results for "{searchTerm}"</div>}
+      {renderResult()}
     </div>
   );
 };

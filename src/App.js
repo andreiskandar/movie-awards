@@ -17,9 +17,8 @@ function App() {
   useEffect(() => {
     if (debouncedSearchTerm) {
       axios
-        .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}`)
+        .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie`)
         .then((res) => {
-          console.log(res.data.Search);
           setResult(res.data.Search);
         })
         .catch((err) => {
