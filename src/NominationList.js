@@ -10,13 +10,10 @@ const NominationList = ({ result, nominations, setResult, setNominations }) => {
     nominations.splice(index, 1);
     setNominations([...nominations]);
 
-    // selected movie nomination button will be disabled
-    const enableButton = result.map((entry) => {
-      if (entry.imdbID === imdbID) {
-        return { ...entry, disabled: false };
-      }
-      return { ...entry };
-    });
+    // selected movie nomination button will be enabled
+    const enableButton = result.map((entry) =>
+      entry.imdbID === imdbID ? { ...entry, disabled: false } : { ...entry }
+    );
 
     setResult(enableButton);
   }

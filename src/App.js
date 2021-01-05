@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Search from './Search';
 import Result from './Result';
+import Banner from './Banner';
 import NominationList from './NominationList';
 import useDebounce from './hooks/useDebounce';
 import axios from 'axios';
@@ -10,7 +11,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
   const [nominations, setNominations] = useState([]);
-  const [disableButton, setDisableButton] = useState(false);
 
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
   const BASE_URL = 'http://www.omdbapi.com/';
@@ -45,18 +45,17 @@ function App() {
           searchTerm={searchTerm}
           setNominations={setNominations}
           nominations={nominations}
-          setDisableButton={setDisableButton}
-          disableButton={disableButton}
         />
         <NominationList
           nominations={nominations}
           setNominations={setNominations}
-          setDisableButton={setDisableButton}
-          disableButton={disableButton}
           setResult={setResult}
           result={result}
         />
       </div>
+
+      {/* render banner */}
+      {nominations.length === 5 && <Banner />}
     </div>
   );
 }
