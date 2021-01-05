@@ -8,8 +8,8 @@ const Search = ({ setSearchTerm }) => {
 
   return (
     <div>
-      <div>Movie Title</div>
-      <input type='search' onChange={handleOnChange}></input>
+      <h4>Movie Title</h4>
+      <input type='search' onChange={handleOnChange} placeholder='Search Movie'></input>
     </div>
   );
 };

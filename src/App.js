@@ -10,6 +10,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
   const [nominations, setNominations] = useState([]);
+  const [disableButton, setDisableButton] = useState(false);
 
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
   const BASE_URL = 'http://www.omdbapi.com/';
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     if (debouncedSearchTerm) {
       axios
-        .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie`)
+        .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie&page=1`)
         .then((res) => {
           setResult(res.data.Search);
         })
@@ -34,10 +35,22 @@ function App() {
 
   return (
     <div className='App'>
-      <div>The Shoppies</div>
+      <h2>The Shoppies</h2>
       <Search setSearchTerm={setSearchTerm} />
-      <Result result={result} searchTerm={searchTerm} setNominations={setNominations} nominations={nominations} />
-      <NominationList nominations={nominations} setNominations={setNominations} />
+      <Result
+        result={result}
+        searchTerm={searchTerm}
+        setNominations={setNominations}
+        nominations={nominations}
+        setDisableButton={setDisableButton}
+        disableButton={disableButton}
+      />
+      <NominationList
+        nominations={nominations}
+        setNominations={setNominations}
+        setDisableButton={setDisableButton}
+        disableButton={disableButton}
+      />
     </div>
   );
 }

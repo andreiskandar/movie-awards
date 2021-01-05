@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Result = ({ result, searchTerm, setNominations, nominations }) => {
+const Result = ({ result, searchTerm, setNominations, nominations, setDisableButton, disableButton }) => {
   if (!result) return null;
 
   function addNomination(movie) {
     //using set to ensure each nomination is unique
     setNominations([...new Set([...nominations, movie])]);
+    setDisableButton(!disableButton);
   }
 
   function renderResult() {
@@ -13,7 +14,10 @@ const Result = ({ result, searchTerm, setNominations, nominations }) => {
       <ul>
         {result.map((movie) => (
           <li key={movie.imdbID}>
-            {movie.Title}({movie.Year})<button onClick={() => addNomination(movie)}> Nominate </button>
+            {movie.Title}({movie.Year})
+            <button disabled={disableButton} onClick={() => addNomination(movie)}>
+              Nominate
+            </button>
           </li>
         ))}
       </ul>
@@ -21,7 +25,7 @@ const Result = ({ result, searchTerm, setNominations, nominations }) => {
   }
   return (
     <div>
-      {result.length > 0 && <div>Results for "{searchTerm}"</div>}
+      {result.length > 0 && <h4>Results for "{searchTerm}"</h4>}
       {renderResult()}
     </div>
   );

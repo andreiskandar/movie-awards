@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NominationList = ({ nominations, setNominations }) => {
+const NominationList = ({ nominations, setNominations, setDisableButton, disableButton }) => {
   if (nominations.length === 0) {
     return null;
   }
@@ -8,6 +8,7 @@ const NominationList = ({ nominations, setNominations }) => {
   function removeNomination(index) {
     nominations.splice(index, 1);
     setNominations([...nominations]);
+    setDisableButton(!disableButton);
   }
 
   function renderNominations() {
@@ -23,7 +24,7 @@ const NominationList = ({ nominations, setNominations }) => {
   }
   return (
     <div>
-      <div>Nominations</div>
+      <h4>Nominations</h4>
       {renderNominations()}
     </div>
   );
