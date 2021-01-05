@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 
-const Search = ({ setSearchTerm, searchTerm }) => {
+const Search = ({ setSearchTerm, searchTerm, setResult }) => {
   const handleOnChange = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
@@ -8,7 +9,7 @@ const Search = ({ setSearchTerm, searchTerm }) => {
 
   return (
     <div>
-      <p>Movie Title</p>
+      <div>Movie Title</div>
       <input type='search' onChange={handleOnChange}></input>
     </div>
   );

@@ -1,10 +1,22 @@
 import React from 'react';
 
-const Result = ({ searchTerm }) => {
-  console.log('key: ', process.env.REACT_APP_OMDB_API_KEY);
+const Result = ({ result, searchTerm }) => {
+  if (!result) return null;
 
-  const OMBD_BASE_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=`;
-  return <div>{searchTerm && <div>Results for "{searchTerm}"</div>}</div>;
+  function renderResult() {
+    return result.map((movie) => (
+      <li>
+        {movie.Title} {movie.Year}
+        <button> Nominate </button>
+      </li>
+    ));
+  }
+  return (
+    <div>
+      <div>Results for "{searchTerm}"</div>
+      <ul>{renderResult()}</ul>
+    </div>
+  );
 };
 
 export default Result;
