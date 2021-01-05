@@ -1,7 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
+import './Result.css';
 
 const Result = ({ result, searchTerm, setNominations, nominations, setDisableButton, disableButton }) => {
-  if (!result) return null;
+  if (!result || result.length === 0) return null;
 
   function addNomination(movie) {
     //using set to ensure each nomination is unique
@@ -10,23 +12,28 @@ const Result = ({ result, searchTerm, setNominations, nominations, setDisableBut
   }
 
   function renderResult() {
-    return (
-      <ul>
-        {result.map((movie) => (
-          <li key={movie.imdbID}>
-            {movie.Title}({movie.Year})
-            <button disabled={disableButton} onClick={() => addNomination(movie)}>
-              Nominate
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
+    const listResult = result.map((movie) => {
+      return (
+        <li key={movie.imdbID} className='movie__list'>
+          {movie.Title}({movie.Year})
+          <button
+            className={`${movie.imdbID} result__button button`}
+            // disabled={disableButton}
+            onClick={() => addNomination(movie)}
+          >
+            Nominate
+          </button>
+        </li>
+      );
+    });
+
+    return listResult;
   }
+
   return (
-    <div>
-      {result.length > 0 && <h4>Results for "{searchTerm}"</h4>}
-      {renderResult()}
+    <div className='result__container container'>
+      {result.length > 0 && <h5 className='result__header'>Results for "{searchTerm}"</h5>}
+      <ul>{renderResult()}</ul>
     </div>
   );
 };

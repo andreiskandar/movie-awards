@@ -1,4 +1,5 @@
 import React from 'react';
+import './NominationList.css';
 
 const NominationList = ({ nominations, setNominations, setDisableButton, disableButton }) => {
   if (nominations.length === 0) {
@@ -12,20 +13,23 @@ const NominationList = ({ nominations, setNominations, setDisableButton, disable
   }
 
   function renderNominations() {
-    return (
-      <ul>
-        {nominations.map((nomination, index) => (
-          <li key={nomination.imdbID}>
-            {nomination.Title}({nomination.Year})<button onClick={() => removeNomination(index)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-    );
+    const nominationList = nominations.map((nomination, index) => {
+      return (
+        <li key={nomination.imdbID} className='nomination__list'>
+          {nomination.Title}({nomination.Year})
+          <button className={`nominationList__remove-button button`} onClick={() => removeNomination(index)}>
+            Remove
+          </button>
+        </li>
+      );
+    });
+    return nominationList;
   }
+
   return (
-    <div>
-      <h4>Nominations</h4>
-      {renderNominations()}
+    <div className='nominationList__container container'>
+      <h5 className='nominationList__header'>Nominations</h5>
+      <ul>{renderNominations()}</ul>
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.nominationList__container {
+  width: 50%;
+  margin-left: 10px ;
+}
+
+.nominationList__container .nominationList__header {
+  margin: 0px 10px 5px 15px; 
+}
+
+.nominationList__container .nomination__list {
+  padding: 5px 0;
+  font-size: 13.28px;
+}

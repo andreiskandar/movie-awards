@@ -1,0 +1,17 @@
+.result__container {
+  width: 50%;
+  margin-right: 10px;
+}
+
+.result__container .result__header {
+  margin: 0px 10px 5px 15px; 
+}
+
+.result__container .movie__list {
+  padding: 5px 0;
+  font-size: 13.28px;
+}
+
+.button { 
+  margin-left: 5px;
+}

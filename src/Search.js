@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.css';
 
 const Search = ({ setSearchTerm }) => {
   const handleOnChange = (e) => {
@@ -7,9 +8,9 @@ const Search = ({ setSearchTerm }) => {
   };
 
   return (
-    <div>
-      <h4>Movie Title</h4>
-      <input type='search' onChange={handleOnChange} placeholder='Search Movie'></input>
+    <div className='search__container container'>
+      <h5 className='search__header'>Movie Title</h5>
+      <input type='search' onChange={handleOnChange} placeholder='Search Movie' className='input__search-bar'></input>
     </div>
   );
 };

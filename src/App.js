@@ -35,22 +35,24 @@ function App() {
 
   return (
     <div className='App'>
-      <h2>The Shoppies</h2>
+      <h2 className='header'>The Shoppies</h2>
       <Search setSearchTerm={setSearchTerm} />
-      <Result
-        result={result}
-        searchTerm={searchTerm}
-        setNominations={setNominations}
-        nominations={nominations}
-        setDisableButton={setDisableButton}
-        disableButton={disableButton}
-      />
-      <NominationList
-        nominations={nominations}
-        setNominations={setNominations}
-        setDisableButton={setDisableButton}
-        disableButton={disableButton}
-      />
+      <div className='result-nomination'>
+        <Result
+          result={result}
+          searchTerm={searchTerm}
+          setNominations={setNominations}
+          nominations={nominations}
+          setDisableButton={setDisableButton}
+          disableButton={disableButton}
+        />
+        <NominationList
+          nominations={nominations}
+          setNominations={setNominations}
+          setDisableButton={setDisableButton}
+          disableButton={disableButton}
+        />
+      </div>
     </div>
   );
 }
