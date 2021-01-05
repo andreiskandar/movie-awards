@@ -22,7 +22,6 @@ function App() {
         .get(`${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie`)
         .then((res) => {
           setResult(res.data.Search);
-          console.log(result);
         })
         .catch((err) => {
           console.error(err);
@@ -38,7 +37,7 @@ function App() {
       <div>The Shoppies</div>
       <Search setSearchTerm={setSearchTerm} />
       <Result result={result} searchTerm={searchTerm} setNominations={setNominations} nominations={nominations} />
-      <NominationList nominations={nominations} />
+      <NominationList nominations={nominations} setNominations={setNominations} />
     </div>
   );
 }

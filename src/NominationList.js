@@ -1,16 +1,22 @@
 import React from 'react';
+import { useEffect } from 'react';
 
-const NominationList = ({ nominations }) => {
+const NominationList = ({ nominations, setNominations }) => {
   if (nominations.length === 0) {
     return null;
   }
+
+  function removeNomination(index) {
+    nominations.splice(index, 1);
+    setNominations([...nominations]);
+  }
+
   function renderNominations() {
     return (
       <ul>
-        {nominations.map((nomination) => (
+        {nominations.map((nomination, index) => (
           <li key={nomination.imdbID}>
-            {nomination.Title} {nomination.Year}
-            <button>Remove</button>
+            {nomination.Title}({nomination.Year})<button onClick={() => removeNomination(index)}>Remove</button>
           </li>
         ))}
       </ul>
