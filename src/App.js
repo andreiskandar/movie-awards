@@ -55,7 +55,7 @@ function App() {
       </div>
 
       {/* render banner */}
-      {nominations.length === 5 && <Banner />}
+      {nominations.length > 4 && <Banner />}
     </div>
   );
 }

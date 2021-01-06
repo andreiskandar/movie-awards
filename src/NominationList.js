@@ -14,12 +14,15 @@ const NominationList = ({ result, nominations, setResult, setNominations }) => {
     const enableButton = result.map((entry) =>
       entry.imdbID === imdbID ? { ...entry, disabled: false } : { ...entry }
     );
-
     setResult(enableButton);
+
+    localStorage.setItem('nominationList', JSON.stringify([...nominations]));
   }
 
   function renderNominations() {
-    const nominationList = nominations.map((nomination, index) => {
+    const getNominationsFromLS = JSON.parse(localStorage.getItem('nominationList'));
+    console.log('getNominationsFromLS:', getNominationsFromLS);
+    const nominationList = getNominationsFromLS.map((nomination, index) => {
       return (
         <li key={nomination.imdbID} className='nomination__list'>
           {nomination.Title}({nomination.Year})

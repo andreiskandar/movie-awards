@@ -15,6 +15,9 @@ const Result = ({ result, setResult, searchTerm, setNominations, nominations, se
       } else return { ...entry };
     });
 
+    // add nomination to LS
+    localStorage.setItem('nominationList', JSON.stringify([...new Set([...nominations, movie])]));
+
     setResult(setupDisableButton);
   }
 
