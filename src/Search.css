@@ -11,3 +11,32 @@
   width: 96%;
   padding: 3px;
 }
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.search__container .spinner {
+  transition: opacity linear 0.1s;
+}
+.search__container .spinner::before {
+  animation: 1s linear infinite spinner;
+  border: solid 3px #eee;
+  border-bottom-color: #f04747;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 25%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 40px;
+  will-change: transform;
+}

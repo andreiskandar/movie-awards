@@ -18,9 +18,10 @@ const Banner = () => {
         justifyContent: 'center',
         alignItems: 'center',
         display: 'flex',
+        visibility: hide,
       }}
     >
-      <img src='/assets/banner.png' style={{ width: '50vw', height: 'auto', visibility: hide }}></img>
+      <img src='/assets/banner.png' style={{ width: '50vw', height: 'auto' }}></img>
       <button onClick={closeBanner} style={{ position: 'absolute', top: '-70px', right: '228px', visibility: hide }}>
         x
       </button>

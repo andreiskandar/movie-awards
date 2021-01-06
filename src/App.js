@@ -7,11 +7,16 @@ import useDebounce from './hooks/useDebounce';
 import axios from 'axios';
 import './App.css';
 import { getNominationsFromLS } from './helper/helper';
+import useVisualMode from './hooks/useVisualMode';
+
+const SHOW = 'Saving';
+const LOADING = 'Loading';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
   const [nominations, setNominations] = useState(getNominationsFromLS());
+  const { mode, transition, back } = useVisualMode(searchTerm ? LOADING : SHOW);
 
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
   const BASE_URL = 'http://www.omdbapi.com/';
