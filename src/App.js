@@ -6,11 +6,12 @@ import NominationList from './NominationList';
 import useDebounce from './hooks/useDebounce';
 import axios from 'axios';
 import './App.css';
+import { getNominationsFromLS } from './helper/helper';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
-  const [nominations, setNominations] = useState([]);
+  const [nominations, setNominations] = useState(getNominationsFromLS());
 
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
   const BASE_URL = 'http://www.omdbapi.com/';
@@ -22,9 +23,8 @@ function App() {
       const searchURL = `${BASE_URL}?apiKey=${API_KEY}&s=${debouncedSearchTerm}&type=movie&page=1`;
       axios
         .get(searchURL)
-        .then((res) => {
-          setResult(res.data.Search);
-        })
+        .then((res) => res.data)
+        .then((data) => setResult(data.Search))
         .catch((err) => {
           console.error(err);
           return [];
@@ -35,10 +35,11 @@ function App() {
   }, [debouncedSearchTerm]);
 
   return (
-    <div className='App'>
+    <main className='App'>
       <h2 className='header'>The Shoppies</h2>
       <Search setSearchTerm={setSearchTerm} />
       <div className='result-nomination'>
+        {/* Render search result */}
         <Result
           result={result}
           setResult={setResult}
@@ -46,6 +47,8 @@ function App() {
           setNominations={setNominations}
           nominations={nominations}
         />
+
+        {/* Render nomination list */}
         <NominationList
           nominations={nominations}
           setNominations={setNominations}
@@ -56,7 +59,7 @@ function App() {
 
       {/* render banner */}
       {nominations.length > 4 && <Banner />}
-    </div>
+    </main>
   );
 }
 

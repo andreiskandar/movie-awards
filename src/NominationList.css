@@ -3,6 +3,11 @@
   margin-left: 10px ;
 }
 
+.empty-result {
+  width: 100%;
+  margin-left: 0;
+}
+
 .nominationList__container .nominationList__header {
   margin: 0px 10px 5px 15px; 
 }
@@ -14,4 +19,5 @@
 
 .nominationList__container .nomination__list .button {
   margin-left: 5px;
+  margin-right: 5px;
 }

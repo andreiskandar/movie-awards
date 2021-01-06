@@ -1,10 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
+import { getNominationsFromLS } from './helper/helper';
 import './NominationList.css';
 
 const NominationList = ({ result, nominations, setResult, setNominations }) => {
-  if (nominations.length === 0) {
-    return null;
-  }
+  const nominationsFromLS = getNominationsFromLS();
+
+  const containerClassName = classNames({
+    ['nominationList__container container']: true,
+    'empty-result': result && result.length === 0 ? true : false,
+  });
 
   function removeNomination(index, imdbID) {
     nominations.splice(index, 1);
@@ -20,26 +25,26 @@ const NominationList = ({ result, nominations, setResult, setNominations }) => {
   }
 
   function renderNominations() {
-    const getNominationsFromLS = JSON.parse(localStorage.getItem('nominationList'));
-    console.log('getNominationsFromLS:', getNominationsFromLS);
-    const nominationList = getNominationsFromLS.map((nomination, index) => {
-      return (
-        <li key={nomination.imdbID} className='nomination__list'>
-          {nomination.Title}({nomination.Year})
-          <button
-            className={`nominationList__remove-button button`}
-            onClick={() => removeNomination(index, nomination.imdbID)}
-          >
-            Remove
-          </button>
-        </li>
-      );
-    });
-    return nominationList;
+    if (nominationsFromLS.length > 0) {
+      const nominationList = nominationsFromLS.map((nomination, index) => {
+        return (
+          <li key={nomination.imdbID} className='nomination__list'>
+            {nomination.Title}({nomination.Year})
+            <button
+              className={`nominationList__remove-button button`}
+              onClick={() => removeNomination(index, nomination.imdbID)}
+            >
+              Remove
+            </button>
+          </li>
+        );
+      });
+      return nominationList;
+    }
   }
 
   return (
-    <div className='nominationList__container container'>
+    <div className={containerClassName}>
       <h5 className='nominationList__header'>Nominations</h5>
       <ul>{renderNominations()}</ul>
     </div>

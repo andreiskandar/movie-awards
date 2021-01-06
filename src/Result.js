@@ -10,15 +10,18 @@ const Result = ({ result, setResult, searchTerm, setNominations, nominations, se
 
     // selected movie nomination button will be disabled
     const setupDisableButton = result.map((entry, index) => {
-      if (key === index) {
+      if (entry.imdbID === movie.imdbID) {
         return { ...entry, disabled: true };
       } else return { ...entry };
     });
 
     // add nomination to LS
-    localStorage.setItem('nominationList', JSON.stringify([...new Set([...nominations, movie])]));
-
+    updateNominationToLS(movie);
     setResult(setupDisableButton);
+  }
+
+  function updateNominationToLS(movie) {
+    localStorage.setItem('nominationList', JSON.stringify([...new Set([...nominations, movie])]));
   }
 
   function renderResult() {
