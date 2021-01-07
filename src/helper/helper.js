@@ -13,10 +13,11 @@ export function fetchMovies(searchTerm) {
   if (searchTerm.length < 3) {
     return axios
       .get(fallbackURL)
-      .then((res) => res.data)
+      .then((res) => {
+        return res.data;
+      })
       .catch((err) => {
-        console.error(err);
-        return [];
+        return err;
       });
   }
 
@@ -27,17 +28,14 @@ export function fetchMovies(searchTerm) {
       return res.data;
     })
     .catch((err) => {
-      console.error(err);
-      return [];
+      return err;
     });
 }
 
-export async function loadSpinner(setTransition, setIsSearching) {
+export async function loadSpinner(setIsSearching) {
   setIsSearching(true);
-  setTransition(true);
 
   setTimeout(() => {
-    setTransition(false);
     setIsSearching(false);
-  }, 1000);
+  }, 500);
 }

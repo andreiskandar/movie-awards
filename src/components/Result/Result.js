@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Result.css';
 import { loadSpinner } from '../../helper/helper';
 import MovieContext from '../MovieContext/MovieContext';
@@ -10,7 +10,6 @@ const Result = () => {
     searchTerm,
     setNominations,
     nominations,
-    setTransition,
     debouncedSearchTerm,
     setIsSearching,
     error,
@@ -21,28 +20,28 @@ const Result = () => {
   }
 
   async function addNomination(movie) {
-    await loadSpinner(setTransition, setIsSearching);
+    function updateButton() {
+      const disableButtonAfterNominated =
+        result &&
+        result.map((entry) => {
+          if (entry.imdbID === movie.imdbID) {
+            return { ...entry, disabled: true };
+          } else return { ...entry };
+        });
+      setResult(disableButtonAfterNominated);
+    }
 
-    //using set to ensure each nomination is unique
-    setNominations([...new Set([...nominations, movie])]);
-
-    // selected movie nomination button will be disabled
-    const setupDisableButton =
-      result &&
-      result.map((entry) => {
-        if (entry.imdbID === movie.imdbID) {
-          return { ...entry, disabled: true };
-        } else return { ...entry };
-      });
-
-    setResult(setupDisableButton);
-
-    // add nomination to LS
-    updateNominationToLS(movie);
+    loadSpinner(setIsSearching).then(() => {
+      updateButton();
+      //using set to ensure each nomination is unique
+      setNominations([...new Set([...nominations, movie])]);
+      updateNominationToLS(movie);
+    });
   }
 
   function renderResult() {
     const totalNominations = nominations && nominations.length;
+
     const listResult = result.map((movie) => {
       return (
         <li key={movie.imdbID} className='movie__list'>

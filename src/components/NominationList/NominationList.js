@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import classNames from 'classnames';
 import { getNominationsFromLS } from '../../helper/helper';
 import { loadSpinner } from '../../helper/helper';
@@ -6,7 +6,7 @@ import MovieContext from '../MovieContext/MovieContext';
 import './NominationList.css';
 
 const NominationList = () => {
-  const { result, nominations, setResult, setNominations, setTransition, setIsSearching } = useContext(MovieContext);
+  const { result, nominations, setResult, setNominations, setIsSearching } = useContext(MovieContext);
   const nominationsFromLS = getNominationsFromLS();
 
   const containerClassName = classNames({
@@ -14,21 +14,24 @@ const NominationList = () => {
     'empty-result': result && result.length === 0 ? true : false,
   });
 
-  async function removeNomination(index, imdbID) {
-    await loadSpinner(setTransition, setIsSearching);
+  const removeNomination = (index, imdbID) => {
+    const updateButton = () => {
+      // selected movie nomination button will be enabled
+      const enableButton = result.map((entry) =>
+        entry.imdbID === imdbID ? { ...entry, disabled: false } : { ...entry }
+      );
 
-    nominations.splice(index, 1);
-    setNominations([...nominations]);
+      setResult(enableButton);
+    };
 
-    // selected movie nomination button will be enabled
-    const enableButton = result.map((entry) =>
-      entry.imdbID === imdbID ? { ...entry, disabled: false } : { ...entry }
-    );
+    loadSpinner(setIsSearching).then(() => {
+      updateButton();
 
-    setResult(enableButton);
-
-    localStorage.setItem('nominationList', JSON.stringify([...nominations]));
-  }
+      nominations.splice(index, 1);
+      setNominations([...nominations]);
+      localStorage.setItem('nominationList', JSON.stringify([...nominations]));
+    });
+  };
 
   function renderNominations() {
     if (nominationsFromLS && nominationsFromLS.length > 0) {
