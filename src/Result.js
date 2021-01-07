@@ -39,12 +39,13 @@ const Result = ({
   }
 
   function renderResult() {
+    const totalNominations = nominations.length;
     const listResult = result.map((movie) => {
       return (
         <li key={movie.imdbID} className='movie__list'>
           {movie.Title}({movie.Year})
           <button
-            disabled={movie.disabled}
+            disabled={totalNominations === 5 ? true : movie.disabled}
             className={`${movie.imdbID} result__button button`}
             onClick={() => addNomination(movie)}
           >

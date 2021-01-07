@@ -2,7 +2,6 @@
   width: 50%;
   margin-left: 10px;
   overflow-wrap: auto;
-
 }
 
 .empty-result {
@@ -22,4 +21,6 @@
 .nominationList__container .nomination__list .button {
   margin-left: 5px;
   margin-right: 5px;
+  margin-top: 5px;
+
 }
