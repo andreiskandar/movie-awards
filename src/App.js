@@ -46,7 +46,7 @@ function App() {
   return (
     <main className='App'>
       {/* render banner when nomination is 5 or greater*/}
-      {nominations.length > 4 && <Banner />}
+      {nominations && nominations.length > 4 && <Banner />}
 
       <h2 className='header'>The Shoppies</h2>
       <Search setSearchTerm={setSearchTerm} isLoading={isLoading} isSearching={isSearching} />
