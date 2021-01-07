@@ -66,7 +66,7 @@ function App() {
         />
 
         {/* Render nomination list */}
-        {nominations.length > 0 && (
+        {nominations && nominations.length > 0 && (
           <NominationList
             nominations={nominations}
             setNominations={setNominations}
