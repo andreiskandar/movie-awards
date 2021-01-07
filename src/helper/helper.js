@@ -5,7 +5,7 @@ export function getNominationsFromLS() {
 
 export function fetchMovies(searchTerm) {
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-  const OMDB_API_URL = `http://www.omdbapi.com/?apiKey=${API_KEY}&type=movie`;
+  const OMDB_API_URL = `https://www.omdbapi.com/?apiKey=${API_KEY}&type=movie`;
   const searchURL = `${OMDB_API_URL}&s=${searchTerm}`;
   const fallbackURL = `${OMDB_API_URL}&t=${searchTerm}`;
 

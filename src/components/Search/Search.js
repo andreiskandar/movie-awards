@@ -4,7 +4,7 @@ import Status from '../Status/Status';
 import './Search.css';
 
 const Search = () => {
-  const { setSearchTerm, isSearching, isLoading } = useContext(MovieContext);
+  const { setSearchTerm, isSearching } = useContext(MovieContext);
   const handleOnChange = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);

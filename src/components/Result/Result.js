@@ -10,7 +10,6 @@ const Result = () => {
     searchTerm,
     setNominations,
     nominations,
-    setIsLoading,
     setTransition,
     debouncedSearchTerm,
     setIsSearching,
