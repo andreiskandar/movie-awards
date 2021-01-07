@@ -1,6 +1,6 @@
 import React from 'react';
 import './Result.css';
-import { loadSpinner } from './helper/helper';
+import { loadSpinner } from '../../helper/helper';
 
 const Result = ({
   result,
@@ -39,7 +39,7 @@ const Result = ({
   }
 
   function renderResult() {
-    const totalNominations = nominations.length;
+    const totalNominations = nominations && nominations.length;
     const listResult = result.map((movie) => {
       return (
         <li key={movie.imdbID} className='movie__list'>

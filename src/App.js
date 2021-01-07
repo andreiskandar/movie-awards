@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Search from './Search';
-import Result from './Result';
-import Banner from './Banner';
-import NominationList from './NominationList';
+import Search from './components/Search/Search';
+import Result from './components/Result/Result';
+import Banner from './components/Banner/Banner';
+import NominationList from './components/NominationList/NominationList';
 import useDebounce from './hooks/useDebounce';
 import './App.css';
 import { getNominationsFromLS, searchMovies } from './helper/helper';
@@ -10,7 +10,7 @@ import { getNominationsFromLS, searchMovies } from './helper/helper';
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
-  const [nominations, setNominations] = useState(getNominationsFromLS());
+  const [nominations, setNominations] = useState([] || getNominationsFromLS());
   const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [transition, setTransition] = useState(false);

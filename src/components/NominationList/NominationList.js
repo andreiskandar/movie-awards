@@ -1,18 +1,10 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { getNominationsFromLS } from './helper/helper';
-import { loadSpinner } from './helper/helper';
+import { getNominationsFromLS } from '../../helper/helper';
+import { loadSpinner } from '../../helper/helper';
 import './NominationList.css';
 
-const NominationList = ({
-  result,
-  nominations,
-  setResult,
-  setNominations,
-  setTransition,
-  setIsLoading,
-  transition,
-}) => {
+const NominationList = ({ result, nominations, setResult, setNominations, setTransition, setIsLoading }) => {
   const nominationsFromLS = getNominationsFromLS();
 
   const containerClassName = classNames({
@@ -37,7 +29,7 @@ const NominationList = ({
   }
 
   function renderNominations() {
-    if (nominationsFromLS.length > 0) {
+    if (nominations && nominationsFromLS.length > 0) {
       const nominationList = nominationsFromLS.map((nomination, index) => {
         return (
           <li key={nomination.imdbID} className='nomination__list'>
@@ -53,6 +45,7 @@ const NominationList = ({
       });
       return nominationList;
     }
+    return null;
   }
 
   return (
