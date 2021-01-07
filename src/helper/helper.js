@@ -3,7 +3,7 @@ export function getNominationsFromLS() {
   return JSON.parse(localStorage.getItem('nominationList'));
 }
 
-export function searchMovies(searchTerm) {
+export function fetchMovies(searchTerm) {
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
   const OMDB_API_URL = `http://www.omdbapi.com/?apiKey=${API_KEY}&type=movie`;
   const searchURL = `${OMDB_API_URL}&s=${searchTerm}`;
@@ -32,12 +32,12 @@ export function searchMovies(searchTerm) {
     });
 }
 
-export async function loadSpinner(setTransition, setIsLoading) {
-  setIsLoading(true);
+export async function loadSpinner(setTransition, setIsSearching) {
+  setIsSearching(true);
   setTransition(true);
 
   setTimeout(() => {
     setTransition(false);
-    setIsLoading(false);
+    setIsSearching(false);
   }, 1000);
 }

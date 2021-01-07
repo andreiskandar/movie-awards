@@ -5,7 +5,9 @@ import Banner from './components/Banner/Banner';
 import NominationList from './components/NominationList/NominationList';
 import useDebounce from './hooks/useDebounce';
 import './App.css';
-import { getNominationsFromLS, searchMovies } from './helper/helper';
+import { getNominationsFromLS, fetchMovies } from './helper/helper';
+import Header from './components/Header/Header';
+import MovieContext from './components/MovieContext/MovieContext';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,13 +23,15 @@ function App() {
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
-      searchMovies(debouncedSearchTerm, setError)
+      fetchMovies(debouncedSearchTerm, setError)
         .then(async (results) => {
           //make sure loading spinner completes cycle
           await setTimeout(() => {
             setIsSearching(false);
           }, 1000);
-
+          return await results;
+        })
+        .then((results) => {
           if (results.Error) {
             setError(results.Error);
           } else {
@@ -44,41 +48,40 @@ function App() {
   }, [debouncedSearchTerm]);
 
   return (
-    <main className='App'>
-      {/* render banner when nomination is 5 or greater*/}
-      {nominations && nominations.length > 4 && <Banner />}
+    <MovieContext.Provider
+      value={{
+        result,
+        setResult,
+        searchTerm,
+        setSearchTerm,
+        nominations,
+        setNominations,
+        isLoading,
+        setIsLoading,
+        isSearching,
+        setIsSearching,
+        error,
+        setError,
+        transition,
+        setTransition,
+        debouncedSearchTerm,
+      }}
+    >
+      <div className='App'>
+        {/* render banner when nomination is 5 or greater*/}
+        <Header />
+        <Search setSearchTerm={setSearchTerm} isLoading={isLoading} isSearching={isSearching} />
+        {nominations && nominations.length > 4 && <Banner />}
 
-      <h2 className='header'>The Shoppies</h2>
-      <Search setSearchTerm={setSearchTerm} isLoading={isLoading} isSearching={isSearching} />
-      <div className='result-nomination'>
-        {/* Render search result */}
-        <Result
-          result={result}
-          setResult={setResult}
-          searchTerm={searchTerm}
-          setNominations={setNominations}
-          nominations={nominations}
-          setIsLoading={setIsLoading}
-          setTransition={setTransition}
-          transition={transition}
-          debouncedSearchTerm={debouncedSearchTerm}
-          error={error}
-        />
+        <div className='result-nomination'>
+          {/* Render search result */}
+          <Result />
 
-        {/* Render nomination list */}
-        {nominations && nominations.length > 0 && (
-          <NominationList
-            nominations={nominations}
-            setNominations={setNominations}
-            setResult={setResult}
-            result={result}
-            setIsLoading={setIsLoading}
-            setTransition={setTransition}
-            transition={transition}
-          />
-        )}
+          {/* Render nomination list */}
+          {nominations && nominations.length > 0 && <NominationList />}
+        </div>
       </div>
-    </main>
+    </MovieContext.Provider>
   );
 }
 

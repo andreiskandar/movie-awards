@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 import { getNominationsFromLS } from '../../helper/helper';
 import { loadSpinner } from '../../helper/helper';
+import MovieContext from '../MovieContext/MovieContext';
 import './NominationList.css';
 
-const NominationList = ({ result, nominations, setResult, setNominations, setTransition, setIsLoading }) => {
+const NominationList = () => {
+  const { result, nominations, setResult, setNominations, setTransition, setIsSearching } = useContext(MovieContext);
   const nominationsFromLS = getNominationsFromLS();
 
   const containerClassName = classNames({
@@ -13,7 +15,7 @@ const NominationList = ({ result, nominations, setResult, setNominations, setTra
   });
 
   async function removeNomination(index, imdbID) {
-    await loadSpinner(setTransition, setIsLoading);
+    await loadSpinner(setTransition, setIsSearching);
 
     nominations.splice(index, 1);
     setNominations([...nominations]);
@@ -29,7 +31,7 @@ const NominationList = ({ result, nominations, setResult, setNominations, setTra
   }
 
   function renderNominations() {
-    if (nominations && nominationsFromLS.length > 0) {
+    if (nominationsFromLS && nominationsFromLS.length > 0) {
       const nominationList = nominationsFromLS.map((nomination, index) => {
         return (
           <li key={nomination.imdbID} className='nomination__list'>

@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Result.css';
 import { loadSpinner } from '../../helper/helper';
+import MovieContext from '../MovieContext/MovieContext';
 
-const Result = ({
-  result,
-  setResult,
-  searchTerm,
-  setNominations,
-  nominations,
-  setIsLoading,
-  setTransition,
-  debouncedSearchTerm,
-  error,
-}) => {
+const Result = () => {
+  const {
+    result,
+    setResult,
+    searchTerm,
+    setNominations,
+    nominations,
+    setIsLoading,
+    setTransition,
+    debouncedSearchTerm,
+    setIsSearching,
+    error,
+  } = useContext(MovieContext);
+
   function updateNominationToLS(movie) {
     localStorage.setItem('nominationList', JSON.stringify([...new Set([...nominations, movie])]));
   }
 
   async function addNomination(movie) {
-    await loadSpinner(setTransition, setIsLoading);
+    await loadSpinner(setTransition, setIsSearching);
 
     //using set to ensure each nomination is unique
     setNominations([...new Set([...nominations, movie])]);
