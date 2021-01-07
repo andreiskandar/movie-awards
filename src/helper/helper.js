@@ -5,25 +5,39 @@ export function getNominationsFromLS() {
 
 export function searchMovies(searchTerm) {
   const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-  const BASE_URL = 'http://www.omdbapi.com/';
-  const searchURL = `${BASE_URL}?apiKey=${API_KEY}&s=${searchTerm}&type=movie&page=1`;
+  const OMDB_API_URL = `http://www.omdbapi.com/?apiKey=${API_KEY}&type=movie`;
+  const searchURL = `${OMDB_API_URL}&s=${searchTerm}`;
+  const fallbackURL = `${OMDB_API_URL}&t=${searchTerm}`;
+
+  // Search movies title with less than 3 characters
+  if (searchTerm.length < 3) {
+    return axios
+      .get(fallbackURL)
+      .then((res) => res.data)
+      .catch((err) => {
+        console.error(err);
+        return [];
+      });
+  }
+
   return axios
     .get(searchURL)
-    .then((res) => res.data.Search)
+    .then((res) => {
+      if (res.data.Error) return res.data;
+      return res.data;
+    })
     .catch((err) => {
       console.error(err);
       return [];
     });
 }
 
-export function updateSpinner(setTransition, setIsLoading) {
-  // set spinner
+export async function loadSpinner(setTransition, setIsLoading) {
   setIsLoading(true);
+  setTransition(true);
 
-  //remove spinner
   setTimeout(() => {
-    setTransition(true);
+    setTransition(false);
     setIsLoading(false);
   }, 1000);
-  setTransition(false);
 }

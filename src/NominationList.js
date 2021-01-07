@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { getNominationsFromLS } from './helper/helper';
-import { updateSpinner } from './helper/helper';
+import { loadSpinner } from './helper/helper';
 import './NominationList.css';
 
 const NominationList = ({
@@ -21,7 +21,8 @@ const NominationList = ({
   });
 
   async function removeNomination(index, imdbID) {
-    await updateSpinner(setTransition, setIsLoading);
+    await loadSpinner(setTransition, setIsLoading);
+
     nominations.splice(index, 1);
     setNominations([...nominations]);
 
@@ -29,9 +30,10 @@ const NominationList = ({
     const enableButton = result.map((entry) =>
       entry.imdbID === imdbID ? { ...entry, disabled: false } : { ...entry }
     );
-    await setResult(enableButton);
 
-    await localStorage.setItem('nominationList', JSON.stringify([...nominations]));
+    setResult(enableButton);
+
+    localStorage.setItem('nominationList', JSON.stringify([...nominations]));
   }
 
   function renderNominations() {

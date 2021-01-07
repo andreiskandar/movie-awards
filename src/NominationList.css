@@ -1,6 +1,8 @@
 .nominationList__container {
   width: 50%;
-  margin-left: 10px ;
+  margin-left: 10px;
+  overflow-wrap: auto;
+
 }
 
 .empty-result {

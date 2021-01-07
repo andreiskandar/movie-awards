@@ -1,15 +1,17 @@
 .result__container {
   width: 50%;
   margin-right: 10px;
+  padding-bottom: 20px;
+  overflow-wrap: anywhere;
 }
 
-.result__container .result__header {
+.result__container .result__header, .result__error {
   margin: 0px 10px 5px 15px; 
+  font-size: inherit
 }
 
 .result__container .movie__list {
   padding: 5px 0;
-  font-size: 13.28px;
 }
 
 .result__container .movie__list .button { 
@@ -17,7 +19,7 @@
   margin-top: 5px;
 }
 
-.result__container .movie__list .disableButton-true {
-  color: #1010104d;
-  background-color: #efefef;
+.result__container .result__error {
+  color: red;
+  /* font-size: 13.28px; */
 }
