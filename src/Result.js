@@ -1,10 +1,11 @@
 import React from 'react';
 import './Result.css';
+import { updateSpinner } from './helper/helper';
 
-const Result = ({ result, setResult, searchTerm, setNominations, nominations, setDisableButton, disableButton }) => {
+const Result = ({ result, setResult, searchTerm, setNominations, nominations, setIsLoading, setTransition }) => {
   if (!result || result.length === 0) return null;
 
-  function addNomination(movie, key) {
+  async function addNomination(movie, key) {
     //using set to ensure each nomination is unique
     setNominations([...new Set([...nominations, movie])]);
 
@@ -15,9 +16,12 @@ const Result = ({ result, setResult, searchTerm, setNominations, nominations, se
       } else return { ...entry };
     });
 
-    // add nomination to LS
-    updateNominationToLS(movie);
     setResult(setupDisableButton);
+
+    await updateSpinner(setTransition, setIsLoading);
+
+    // add nomination to LS
+    await updateNominationToLS(movie);
   }
 
   function updateNominationToLS(movie) {

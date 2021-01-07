@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { getNominationsFromLS } from './helper/helper';
+import { updateSpinner } from './helper/helper';
 import './NominationList.css';
 
-const NominationList = ({ result, nominations, setResult, setNominations }) => {
+const NominationList = ({
+  result,
+  nominations,
+  setResult,
+  setNominations,
+  setTransition,
+  setIsLoading,
+  transition,
+}) => {
   const nominationsFromLS = getNominationsFromLS();
 
   const containerClassName = classNames({
@@ -11,7 +20,8 @@ const NominationList = ({ result, nominations, setResult, setNominations }) => {
     'empty-result': result && result.length === 0 ? true : false,
   });
 
-  function removeNomination(index, imdbID) {
+  async function removeNomination(index, imdbID) {
+    await updateSpinner(setTransition, setIsLoading);
     nominations.splice(index, 1);
     setNominations([...nominations]);
 
@@ -19,9 +29,9 @@ const NominationList = ({ result, nominations, setResult, setNominations }) => {
     const enableButton = result.map((entry) =>
       entry.imdbID === imdbID ? { ...entry, disabled: false } : { ...entry }
     );
-    setResult(enableButton);
+    await setResult(enableButton);
 
-    localStorage.setItem('nominationList', JSON.stringify([...nominations]));
+    await localStorage.setItem('nominationList', JSON.stringify([...nominations]));
   }
 
   function renderNominations() {
