@@ -45,4 +45,6 @@ There is a .env.example file that contains the format for the environment variab
 NOTE - the deployed applications do not require an API key to run. Just visit the sites and they work as intended.
 
 ## Screenshots
-![Animated GIF-downsized](https://user-images.githubusercontent.com/56459037/103964597-af75ed80-5110-11eb-8199-2b6a7ada1e0c.gif)
+
+![Animated GIF-downsized_large](https://user-images.githubusercontent.com/56459037/103964953-7f7b1a00-5111-11eb-988a-be86ba3133b0.gif)
+
