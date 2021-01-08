@@ -22,8 +22,9 @@ The application is deployed on Netlify and can be visited [here](https://movie-a
 
 ## Further features to be added
 - Responsive design for mobile users
-- Pagination: At the moment the search only shows the first 10 results 
-
+- Pagination: At the moment the search only shows the first 10 results. To improve user experience in nominating movies, user should be able to browse the results 
+- User Authentication allow different user to have different nomination list 
+- Attractive UI Styling
 
 ## Instructions to run assignment locally
 1. Clone this repository.
