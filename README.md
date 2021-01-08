@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# UX Developer Intern & Web Developer Intern Challenge - Technical Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a repository for The Shoppies App. It has been created with React, CSS, and Axios. This app is connected to [The Open Movie Database API](https://www.omdbapi.com) that provides movie information to the user. Instructions on how to run the application locally are found further down in this README.
 
-## Available Scripts
+## Location of deployed application
+The application is deployed on Netlify and can be visited [here](https://movie-awards.netlify.app/)
 
-In the project directory, you can run:
+## Technical Requirements
+- Search results should come from OMDB's API 
+- Each search result should list at least its title, year of release and a button to nominate that film
+- Updates to the search terms should update the result list
+- Movies in search results can be added and removed from the nomination list
+- If a search result has already been nominated, disable its nominate button
+- Display a banner when the user has 5 nominations.
 
-### `yarn start`
+## Stretch goals attempted
+- Save nomination lists if the user leaves the page
+- Animations for loading, adding/deleting movies, notifications
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Additional feature
+- When movie is not found in database, it will render 'Movie is not found!' in the UI 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Further features to be added
+- Responsive design for mobile users
+- Pagination: At the moment the search only shows the first 10 results 
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instructions to run assignment locally
+1. Clone this repository.
+2. Cd into the project folder, 
+3. Run ```run npm install``` or ```yarn install```.
 
-### `yarn build`
+Once dependencies have been installed, you can run npm start to run the Frontend application locally on Port 3000.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Dependencies include:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- "axios": "^0.21.1"
+- "classnames": "^2.2.6"
+- "react": "^17.0.1"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This repository has been deployed on [NETLIFY](https://movie-awards.netlify.app/) and stored on [Github](https://github.com/andreiskandar/movie-awards)
 
-### `yarn eject`
+There is a .env.example file that contains the format for the environment variables needed to run this application. Please input your personal key if you wish to test this application locally. You can obtain API key from [OMDB](http://www.omdbapi.com/apikey.aspx)  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+NOTE - the deployed applications do not require an API key to run. Just visit the sites and they work as intended.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Your feedback on this technical challenge
+I really enjoyed this technical challenge. I found I learned a lot about as I developed this application, and feel like it is a well rounded challenge, that allows people to create and develop freely. It has a decent amount of stretch that I feel allows people to further showcase their skills.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Thank you for your time and consideration in this matter. I really look forward to hearing from you and participating in the next part of the hiring process.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Screenshots
+![Animated GIF-downsized](https://user-images.githubusercontent.com/56459037/103964597-af75ed80-5110-11eb-8199-2b6a7ada1e0c.gif)

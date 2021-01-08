@@ -19,7 +19,7 @@ const Result = () => {
     localStorage.setItem('nominationList', JSON.stringify([...new Set([...nominations, movie])]));
   }
 
-  async function addNomination(movie) {
+  function addNomination(movie) {
     function updateButton() {
       const disableButtonAfterNominated =
         result &&

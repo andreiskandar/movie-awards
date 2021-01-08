@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
 import Search from './components/Search/Search';
 import Result from './components/Result/Result';
 import Banner from './components/Banner/Banner';
 import NominationList from './components/NominationList/NominationList';
-import useDebounce from './hooks/useDebounce';
-import './App.css';
-import { getNominationsFromLS, fetchMovies } from './helper/helper';
-import Header from './components/Header/Header';
 import MovieContext from './components/MovieContext/MovieContext';
+import useDebounce from './hooks/useDebounce';
+import { getNominationsFromLS, fetchMovies } from './helper/helper';
+import './App.css';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,7 +17,6 @@ function App() {
   const [error, setError] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  console.log('nominations:', nominations);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
