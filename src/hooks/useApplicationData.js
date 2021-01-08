@@ -9,7 +9,7 @@ const useApplicationData = () => {
   const [result, setResult] = useState([]);
   const { isSearchingState, errorState } = useInterfaceState();
   const { isSearching, setIsSearching } = isSearchingState;
-  const [nominations, setNominations] = useState(null || getNominationsFromLS());
+  const [nominations, setNominations] = useState(getNominationsFromLS() === null ? [] : getNominationsFromLS());
 
   const { error, setError } = errorState;
 
