@@ -37,5 +37,5 @@ export async function loadSpinner(setIsSearching) {
 
   setTimeout(() => {
     setIsSearching(false);
-  }, 500);
+  }, 5000);
 }

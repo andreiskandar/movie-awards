@@ -1,3 +1,9 @@
+.status {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  margin: 10px 0;
+}
 
 @keyframes spinner {
   0% {
@@ -12,7 +18,7 @@
   transition: opacity linear 0.1s;
 }
 
-.status-spinner::before {
+.status-spinner {
   animation: 1s linear infinite spinner;
   border: solid 3px #eee;
   border-bottom-color: #f04747;
@@ -21,8 +27,9 @@
   height: 40px;
   left: 50%;
   opacity: inherit;
-  position: absolute;
-  top: 25%;
+  /* position: absolute; */
+  /* position: relative; */
+  /* top: 25%; */
   transform: translate3d(-50%, -50%, 0);
   transform-origin: center;
   width: 40px;
