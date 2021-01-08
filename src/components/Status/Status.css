@@ -28,7 +28,7 @@
   left: 50%;
   opacity: inherit;
   /* position: absolute; */
-  /* position: relative; */
+  position: relative;
   /* top: 25%; */
   transform: translate3d(-50%, -50%, 0);
   transform-origin: center;

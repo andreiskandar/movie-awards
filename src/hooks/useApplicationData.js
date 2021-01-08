@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
 import useDebounce from './useDebounce';
+import useInterfaceState from './useInterfaceState';
+import fetchMovies from '../helper/fetchMovies';
+import { getNominationsFromLS } from '../helper/helper';
 
-const useSearchData = () => {
+const useApplicationData = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState([]);
-  const [error, setError] = useState('');
+  const { isSearchingState, errorState } = useInterfaceState();
+  const { isSearching, setIsSearching } = isSearchingState;
+  const [nominations, setNominations] = useState(null || getNominationsFromLS());
+
+  const { error, setError } = errorState;
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
-      fetchMovies(debouncedSearchTerm, setError)
+      fetchMovies(debouncedSearchTerm)
         .then(async (results) => {
           //make sure loading spinner completes cycle
           await setTimeout(() => {
@@ -34,7 +41,14 @@ const useSearchData = () => {
     }
   }, [debouncedSearchTerm]);
 
-  return { debouncedSearchTerm, setSearchTerm };
+  return {
+    debouncedSearchTerm,
+    searchTermState: { searchTerm, setSearchTerm },
+    resultState: { result, setResult },
+    errorState: { error, setError },
+    isSearchingState: { isSearching, setIsSearching },
+    nominationState: { nominations, setNominations },
+  };
 };
 
-export default useSearchData;
+export default useApplicationData;
