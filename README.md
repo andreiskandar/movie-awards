@@ -28,7 +28,7 @@ The application is deployed on Netlify and can be visited [here](https://movie-a
 ## Instructions to run assignment locally
 1. Clone this repository.
 2. Cd into the project folder, 
-3. Run ```run npm install``` or ```yarn install```.
+3. Run ```npm install``` or ```yarn install```.
 
 Once dependencies have been installed, you can run npm start to run the Frontend application locally on Port 3000.
 
@@ -43,11 +43,6 @@ This repository has been deployed on [NETLIFY](https://movie-awards.netlify.app/
 There is a .env.example file that contains the format for the environment variables needed to run this application. Please input your personal key if you wish to test this application locally. You can obtain API key from [OMDB](http://www.omdbapi.com/apikey.aspx)  
 
 NOTE - the deployed applications do not require an API key to run. Just visit the sites and they work as intended.
-
-## Your feedback on this technical challenge
-I really enjoyed this technical challenge. I found I learned a lot about as I developed this application, and feel like it is a well rounded challenge, that allows people to create and develop freely. It has a decent amount of stretch that I feel allows people to further showcase their skills.
-
-Thank you for your time and consideration in this matter. I really look forward to hearing from you and participating in the next part of the hiring process.
 
 ## Screenshots
 ![Animated GIF-downsized](https://user-images.githubusercontent.com/56459037/103964597-af75ed80-5110-11eb-8199-2b6a7ada1e0c.gif)
