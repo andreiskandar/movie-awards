@@ -48,3 +48,5 @@ NOTE - the deployed applications do not require an API key to run. Just visit th
 
 ![Animated GIF-downsized_large](https://user-images.githubusercontent.com/56459037/103964953-7f7b1a00-5111-11eb-988a-be86ba3133b0.gif)
 
+<img width="1220" alt="Screen Shot 2021-01-07 at 5 56 38 PM" src="https://user-images.githubusercontent.com/56459037/103965104-dbde3980-5111-11eb-92c5-d664d103c0bc.png">
+<img width="1236" alt="Screen Shot 2021-01-07 at 5 57 28 PM" src="https://user-images.githubusercontent.com/56459037/103965106-dda7fd00-5111-11eb-9df9-b8bc295706bd.png">
