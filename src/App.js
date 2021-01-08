@@ -21,7 +21,6 @@ function App() {
   const { isSearching, setIsSearching } = isSearchingState;
   const { result, setResult } = resultState;
   const { nominations, setNominations } = nominationState;
-  console.log('nominations:', nominations);
   const { searchTerm, setSearchTerm } = searchTermState;
 
   return (
