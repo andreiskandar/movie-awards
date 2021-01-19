@@ -19,6 +19,11 @@ const Result = () => {
     localStorage.setItem('nominationList', JSON.stringify([...new Set([...nominations, movie])]));
   }
 
+  function doesMovieExistInLS(movie) {
+    const checkMoviesFromLS = nominations && nominations.find((nomination) => nomination.imdbID === movie.imdbID);
+    return checkMoviesFromLS ? true : false;
+  }
+
   function addNomination(movie) {
     function updateButton() {
       const disableButtonAfterNominated =
@@ -48,7 +53,7 @@ const Result = () => {
         <li key={movie.imdbID} className='movie__list'>
           {movie.Title}({movie.Year})
           <button
-            disabled={totalNominations === 5 ? true : movie.disabled}
+            disabled={doesMovieExistInLS(movie) ? true : totalNominations === 5 ? true : movie.disabled}
             className={`${movie.imdbID} result__button button`}
             onClick={() => addNomination(movie)}
           >
