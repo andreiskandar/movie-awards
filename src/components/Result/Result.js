@@ -20,7 +20,7 @@ const Result = () => {
   }
 
   function doesMovieExistInLS(movie) {
-    const checkMoviesFromLS = nominations && nominations.find((nomination) => nomination.imdbID === movie.imdbID);
+    const checkMoviesFromLS = nominations?.find((nomination) => nomination.imdbID === movie.imdbID);
     return checkMoviesFromLS ? true : false;
   }
 
